@@ -24,11 +24,16 @@ jobs:
           export DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}
           export DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}
 
-      # Debug: Print the branch name (github.ref_name)
-      - name: Print GitHub ref name
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      # DEBUG
+      - name: Print GitHub branch name
         run: |
-          echo "This workflow was triggered by branch: $GITHUB_REF_NAME"
+          echo "This workflow was triggered by branch: ${{ steps.extract_branch.outputs.branch }}"
 
       - name: Pull latest changes into Databricks Repo
         run: |
-          databricks repos update --path ${{ secrets.DATABRICKS_REPO_PATH }} --branch $GITHUB_REF_NAME
+          databricks repos update --path ${{ secrets.DATABRICKS_REPO_PATH }} --branch "${{ steps.extract_branch.outputs.branch }}"
