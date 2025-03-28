@@ -1,4 +1,4 @@
-name: Sync Databricks Repo Based on Branch
+name: CI Databricks Sync
 
 on:
   push:
