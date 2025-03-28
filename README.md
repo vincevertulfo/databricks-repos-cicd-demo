@@ -22,4 +22,4 @@ This repository explores a CI/CD workflow in Databricks using Git folders and th
 ## 📖 Full Article  
 
 For a detailed explanation, check out my article:  
-👉 [Implementing CI/CD in Databricks Using Repos API](https://melbdataguy.medium.com/implementing-ci-cd-in-databricks-using-repos-api-fcb6a05fd844)  
+👉 [Implementing CI/CD in Databricks Using Repos API](https://medium.com/@melbdataguy/implementing-ci-cd-in-databricks-using-repos-api-0c39c655d485)  
