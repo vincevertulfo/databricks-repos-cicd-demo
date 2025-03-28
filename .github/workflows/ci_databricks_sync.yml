@@ -11,6 +11,9 @@ jobs:
   sync-databricks:
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name }}  # Dynamically selects the environment based on branch name
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }
 
     steps:
       - name: Checkout GitHub repo
@@ -36,4 +39,4 @@ jobs:
 
       - name: Pull latest changes into Databricks Repo
         run: |
-          databricks repos update ${{ secrets.DATABRICKS_REPO_PATH }} --branch "${{ steps.extract_branch.outputs.branch }}"
+          databricks repos update ${{ secrets.DATABRICKS_REPO_PATH }} --branch ${{ steps.extract_branch.outputs.branch }}
