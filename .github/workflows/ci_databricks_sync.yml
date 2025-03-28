@@ -6,6 +6,8 @@ on:
       - dev
       - test
       - main
+    paths:
+      - 'src/**'
 
 jobs:
   sync-databricks:
@@ -21,11 +23,6 @@ jobs:
 
       # Download the Databricks CLI. See https://github.com/databricks/setup-cli
       - uses: databricks/setup-cli@main
-
-      # - name: Set Databricks Environment Variables
-      #   run: |
-      #     export DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}
-      #     export DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}
 
       - name: Extract branch name
         shell: bash
