@@ -24,11 +24,10 @@ jobs:
           export DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}
           export DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}
 
-      # Debug: Print environment variables (with secret masking)
-      - name: Check environment variables
+      # Debug: Print the branch name (github.ref_name)
+      - name: Print GitHub ref name
         run: |
-          echo "DATABRICKS_HOST is set: $DATABRICKS_HOST"
-          echo "DATABRICKS_TOKEN is set: ${DATABRICKS_TOKEN:0:4}***"  # Mask part of the token for safety
+          echo "This workflow was triggered by branch: $GITHUB_REF_NAME"
 
       - name: Pull latest changes into Databricks Repo
         run: |
