@@ -19,9 +19,16 @@ jobs:
       - name: Install Databricks CLI
         run: pip install databricks-cli
 
-      - name: Configure Databricks CLI
+      - name: Set Databricks Environment Variables
         run: |
-          databricks configure --host ${{ secrets.DATABRICKS_HOST }} --token ${{ secrets.DATABRICKS_TOKEN }}
+          export DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}
+          export DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}
+
+      # Debug: Print environment variables (with secret masking)
+      - name: Check environment variables
+        run: |
+          echo "DATABRICKS_HOST is set: $DATABRICKS_HOST"
+          echo "DATABRICKS_TOKEN is set: ${DATABRICKS_TOKEN:0:4}***"  # Mask part of the token for safety
 
       - name: Pull latest changes into Databricks Repo
         run: |
