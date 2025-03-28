@@ -36,4 +36,4 @@ jobs:
 
       - name: Pull latest changes into Databricks Repo
         run: |
-          databricks repos update --path ${{ secrets.DATABRICKS_REPO_PATH }} --branch "${{ steps.extract_branch.outputs.branch }}"
+          databricks repos update ${{ secrets.DATABRICKS_REPO_PATH }} --branch "${{ steps.extract_branch.outputs.branch }}"
